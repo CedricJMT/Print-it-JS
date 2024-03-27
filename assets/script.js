@@ -27,6 +27,7 @@ const arrowLeft = document.querySelector(".arrow_left");
 const arrowRight = document.querySelector(".arrow_right");
 const bannerImg = document.querySelector(".banner-img");
 const tagLine = document.querySelector("#banner p");
+const dotsContainer = document.querySelector(".dots");
 
 //index de l'image actuelle//
 let currentSlideIndex = 0;
@@ -38,6 +39,7 @@ function showNextSlide() {
         currentSlideIndex = 0;
     }
     updateSlide();
+	updateDots();
 }
 
 function showPreviousSlide() {
@@ -46,6 +48,7 @@ function showPreviousSlide() {
         currentSlideIndex = slides.length - 1;
     }
     updateSlide();
+	updateDots();
 }
 
 function updateSlide(){
@@ -60,5 +63,22 @@ arrowRight.addEventListener("click", showNextSlide);
 
 //1ere image au chargement page//
 updateSlide();
+
+//dots//
+
+// Fonction pour mettre à jour les points du carrousel
+function updateDots() {
+    // Supprimer la classe "dot_selected" de tous les points
+    const allDots = document.querySelectorAll(".dot");
+    allDots.forEach(dot => {
+        dot.classList.remove("dot_selected");
+    });
+
+    // Ajouter la classe "dot_selected" au point correspondant à la slide active
+    allDots[currentSlideIndex].classList.add("dot_selected");
+}
+
+// Appel de la fonction pour mettre à jour les points au chargement de la page
+updateDots();
 
 
